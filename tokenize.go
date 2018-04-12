@@ -2,10 +2,6 @@ package main
 
 type Token rune
 
-func (t Token) String() string {
-	return string(t)
-}
-
 const (
 	Add       = Token('+')
 	Sub       = Token('-')
@@ -23,9 +19,10 @@ func (t *Tokenizer) Tokenize(input string) []Token {
 	tokens := make([]Token, 0)
 
 	for _, c := range input {
-		switch Token(c) {
+		t := Token(c)
+		switch t {
 		case Add, Sub, Right, Left, Read, Write, BeginLoop, EndLoop:
-			tokens = append(tokens, Token(c))
+			tokens = append(tokens, t)
 		default:
 			// do nothing
 		}
